@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1112</width>
+    <height>633</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IM View</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resurc.qrc">
+    <normaloff>:/img/IM_48_blue.png</normaloff>:/img/IM_48_blue.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" rowspan="2">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Настройки каналов</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QTableView" name="tableView"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Вывод измеренных данных</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Отображение графиков</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>23</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>23</height>
+       </size>
+      </property>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>ПРИБОР</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>0</y>
+         <width>351</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>textLabel1</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>450</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>450</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>GroupBox</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1112</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="action"/>
+    <addaction name="action_5"/>
+    <addaction name="separator"/>
+    <addaction name="action_6"/>
+    <addaction name="action_9"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="action_8"/>
+    <addaction name="action_10"/>
+    <addaction name="separator"/>
+    <addaction name="action_11"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Редактирование</string>
+    </property>
+    <addaction name="action_13"/>
+    <addaction name="action_7"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Инструменты</string>
+    </property>
+    <addaction name="action_4"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="action_2"/>
+    <addaction name="action_3"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="actionLoad"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionClose"/>
+   <addaction name="actionPage_Setup"/>
+   <addaction name="actionprint"/>
+   <addaction name="separator"/>
+   <addaction name="actionRead"/>
+   <addaction name="actionSave_2"/>
+   <addaction name="separator"/>
+   <addaction name="actionPLUS"/>
+   <addaction name="actionMINUS"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="actionLoad">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Загрузить файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Открыть файл конфигурации прибора</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset theme="document-new">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Создать новый файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Создать новый файл конфигурации прибора</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset theme="document-save">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Сохранить файл конфигурации прибора</string>
+   </property>
+  </action>
+  <action name="actionRead">
+   <property name="icon">
+    <iconset theme="document-import">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Считать данные</string>
+   </property>
+  </action>
+  <action name="actionSave_2">
+   <property name="icon">
+    <iconset theme="document-export">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Записать данные</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset theme="document-close">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Закрыть файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Закрыть файл конфигурации прибора</string>
+   </property>
+  </action>
+  <action name="actionPLUS">
+   <property name="icon">
+    <iconset theme="archive-insert">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>PLUS</string>
+   </property>
+   <property name="toolTip">
+    <string>Добавить строку</string>
+   </property>
+  </action>
+  <action name="actionMINUS">
+   <property name="icon">
+    <iconset theme="archive-remove">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>MINUS</string>
+   </property>
+   <property name="toolTip">
+    <string>Удалить строку</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="icon">
+    <iconset theme="document-new">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Создать новый файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Создать новый файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="icon">
+    <iconset theme="help-contents">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Руководство пользователя</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="icon">
+    <iconset resource="resurc.qrc">
+     <normaloff>:/img/IM_24_blue.png</normaloff>:/img/IM_24_blue.png</iconset>
+   </property>
+   <property name="text">
+    <string>О программе</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="icon">
+    <iconset theme="configure">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Настройки</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Return</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Открыть файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_7">
+   <property name="icon">
+    <iconset theme="archive-remove">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить строку</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="action_9">
+   <property name="icon">
+    <iconset theme="document-close">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Закрыть файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Закрыть файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="action_11">
+   <property name="icon">
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Выход</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionprint">
+   <property name="icon">
+    <iconset theme="document-print">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Печать файла конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Печать файла конфигурации прибора</string>
+   </property>
+  </action>
+  <action name="actionPage_Setup">
+   <property name="icon">
+    <iconset theme="document-print-preview">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Просмотр предварительной печати</string>
+   </property>
+   <property name="toolTip">
+    <string>Просмотр предварительной печати</string>
+   </property>
+  </action>
+  <action name="action_6">
+   <property name="icon">
+    <iconset theme="document-save">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="icon">
+    <iconset theme="document-print-preview">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Просмотр предварительной печати</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
+  <action name="action_10">
+   <property name="icon">
+    <iconset theme="document-print">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Печать конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="action_13">
+   <property name="icon">
+    <iconset theme="archive-insert">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить строку</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resurc.qrc"/>
+ </resources>
+ <connections/>
+</ui>
