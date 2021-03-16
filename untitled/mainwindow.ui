@@ -132,46 +132,6 @@
      <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>Файл</string>
-    </property>
-    <addaction name="action"/>
-    <addaction name="action_5"/>
-    <addaction name="separator"/>
-    <addaction name="action_6"/>
-    <addaction name="action_9"/>
-    <addaction name="separator"/>
-    <addaction name="separator"/>
-    <addaction name="action_8"/>
-    <addaction name="action_10"/>
-    <addaction name="separator"/>
-    <addaction name="action_11"/>
-   </widget>
-   <widget class="QMenu" name="menu_2">
-    <property name="title">
-     <string>Редактирование</string>
-    </property>
-    <addaction name="action_13"/>
-    <addaction name="action_7"/>
-   </widget>
-   <widget class="QMenu" name="menu_3">
-    <property name="title">
-     <string>Инструменты</string>
-    </property>
-    <addaction name="action_4"/>
-   </widget>
-   <widget class="QMenu" name="menu_4">
-    <property name="title">
-     <string>Справка</string>
-    </property>
-    <addaction name="action_2"/>
-    <addaction name="action_3"/>
-   </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_2"/>
-   <addaction name="menu_3"/>
-   <addaction name="menu_4"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
