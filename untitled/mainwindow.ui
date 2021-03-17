@@ -187,6 +187,9 @@
    <property name="toolTip">
     <string>Создать новый файл конфигурации прибора</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionSave">
    <property name="icon">

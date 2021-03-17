@@ -63,7 +63,7 @@ private slots:
 
     void on_action_10_triggered();
 
-    void Page_Setup();
+    void pageSetup();
 
     void printPreview(QPrinter *printer);
 
