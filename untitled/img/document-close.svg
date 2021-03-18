@@ -33,10 +33,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1024"
+     inkscape:window-height="1030"
      id="namedview9"
      showgrid="false"
-     inkscape:zoom="53.3125"
+     inkscape:zoom="53.6875"
      inkscape:cx="8"
      inkscape:cy="8"
      inkscape:window-x="0"
@@ -55,7 +55,7 @@
   </defs>
   <path
      d="M 3 2 L 3 14 L 8 14 L 8 13 L 4 13 L 4 3 L 9 3 L 9 6 L 12 6 L 12 8 L 13 8 L 13 5 L 10 2 L 3 2 Z M 9.707 9.03 L 9 9.737 L 10.793 11.53 L 9 13.323 L 9.707 14.03 L 11.5 12.237 L 13.293 14.03 L 14 13.323 L 12.207 11.53 L 14 9.737 L 13.293 9.03 L 11.5 10.823 L 9.707 9.03 Z"
-     style="fill:#000000;fill-opacity:1;stroke:none"
+     style="fill:#1a1a1a;fill-opacity:1;stroke:none"
      class="ColorScheme-NegativeText"
      id="path5" />
 </svg>

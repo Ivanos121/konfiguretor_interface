@@ -91,11 +91,20 @@ private slots:
 
     void loadFile(const QString &fileName);
 
+    void on_actionNew_triggered();
+
+    void on_actionLoad_triggered();
+
+    void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+
+    void closeApp();
+
 private:
     Ui::MainWindow *ui;
 
     void createActions();
     void createMenus();
+    void closeEvent(QCloseEvent *event);
 
     QString curFile;
     QLabel* label;

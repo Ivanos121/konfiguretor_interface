@@ -147,6 +147,7 @@
    <addaction name="actionNew"/>
    <addaction name="actionLoad"/>
    <addaction name="actionSave"/>
+   <addaction name="actionSaveAs"/>
    <addaction name="actionClose"/>
    <addaction name="actionPage_Setup"/>
    <addaction name="actionprint"/>
@@ -168,6 +169,9 @@
    </property>
    <property name="toolTip">
     <string>Открыть файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
    <property name="visible">
     <bool>true</bool>
@@ -223,14 +227,17 @@
   </action>
   <action name="actionClose">
    <property name="icon">
-    <iconset theme="document-close">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset resource="resurc.qrc">
+     <normaloff>:/img/document-close.svg</normaloff>:/img/document-close.svg</iconset>
    </property>
    <property name="text">
     <string>Закрыть файл конфигурации прибора</string>
    </property>
    <property name="toolTip">
     <string>Закрыть файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </action>
   <action name="actionPLUS">
@@ -272,7 +279,7 @@
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="actionHelp">
    <property name="icon">
     <iconset theme="help-contents">
      <normaloff>.</normaloff>.</iconset>
@@ -284,7 +291,7 @@
     <string>F1</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="actionAbout">
    <property name="icon">
     <iconset resource="resurc.qrc">
      <normaloff>:/img/IM_24_blue.png</normaloff>:/img/IM_24_blue.png</iconset>
@@ -344,7 +351,7 @@
     <string>Ctrl+W</string>
    </property>
   </action>
-  <action name="action_11">
+  <action name="actionExit">
    <property name="icon">
     <iconset theme="application-exit">
      <normaloff>.</normaloff>.</iconset>
@@ -426,6 +433,34 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset theme="document-save-as"/>
+   </property>
+   <property name="text">
+    <string>Сохранить файл конфигурации как</string>
+   </property>
+   <property name="toolTip">
+    <string>Сохранить файл конфигурации как</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionNastr">
+   <property name="icon">
+    <iconset theme="configure"/>
+   </property>
+   <property name="text">
+    <string>настройки</string>
+   </property>
+   <property name="toolTip">
+    <string>настройки</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+F12</string>
    </property>
   </action>
  </widget>

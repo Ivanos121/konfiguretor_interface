@@ -12,7 +12,6 @@
         <file>img/document-open.svg</file>
         <file>img/document-save-as.svg</file>
         <file>img/document-save.svg</file>
-        <file>img/document-close.svg</file>
         <file>img/document-print.svg</file>
         <file>img/document-preview-archive.svg</file>
         <file>img/document-import.svg</file>
@@ -21,5 +20,6 @@
         <file>img/system-help.svg</file>
         <file>img/archive-insert.svg</file>
         <file>img/archive-remove.svg</file>
+        <file>img/document-close.svg</file>
     </qresource>
 </RCC>
