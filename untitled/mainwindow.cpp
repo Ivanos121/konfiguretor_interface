@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionMINUS->setEnabled(false);
     modifyMenu->setEnabled(false);
     priborMenu->setEnabled(false);
+
 }
 
 MainWindow::~MainWindow()
@@ -451,6 +452,8 @@ void MainWindow::Save()
     }
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor"));
+
+    isChanged = false;
 }
 
 void MainWindow::SaveAs()
@@ -658,6 +661,7 @@ void MainWindow::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bo
 {
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor") + QString("*"));
+    isChanged = true;
 }
 
 void MainWindow::closeApp()
@@ -667,8 +671,22 @@ void MainWindow::closeApp()
 
 void MainWindow::closeEvent(QCloseEvent *event)  // show prompt when user wants to close app
 {
-    event->ignore();
-    if (QMessageBox::Yes == QMessageBox::question(this, "Close Confirmation", "Exit?", QMessageBox::Yes | QMessageBox::No))
+    if(isChanged)
+    {
+        switch (QMessageBox::question(this, "Close Confirmation", "Сохранить?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
+        {
+        case QMessageBox::Yes:
+            Save();
+            event->accept();
+            break;
+        case QMessageBox::Cancel:
+            event->ignore();
+            break;
+        case QMessageBox::No:
+            event->accept();
+        }
+    }
+    else
     {
         event->accept();
     }

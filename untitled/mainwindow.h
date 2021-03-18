@@ -134,7 +134,7 @@ private:
     QAction *settingsAct;
     QAction *helpAct;
     QAction *konfiguretorAct;
-
+    bool isChanged = false;
     enum { MaxRecentFiles = 5 };
     QAction *recentFileActs[MaxRecentFiles];
 
