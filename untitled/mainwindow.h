@@ -28,83 +28,39 @@ public:
     ~MainWindow();
 
 private slots:
-    void onCheckBoxHeaderClick1();
-    void onCheckBoxHeaderClick2();
-
-    void open();
-
-    void closeAllBase();
-
     void newFile();
-
+    void open();
     void Save();
-
     void SaveAs();
-
-    void addPage();
-
-    void removePage();
-
-    void on_action_11_triggered();
-
-    void on_actionprint_triggered();
-
-    void on_action_13_triggered();
-
-    void on_action_6_triggered();
-
-    void on_tabWidget_currentChanged(int index);
-
-    void on_action_triggered();
-
-    void on_action_5_triggered();
-
-    void on_action_9_triggered();
-
-    void on_action_10_triggered();
-
+    void closeAllBase();
     void pageSetup();
-
-    void printPreview(QPrinter *printer);
-
-    void openRecentFile();
-
-    void setCurrentFile(const QString &fileName);
-
-    void updateRecentFileActions();
-
-    QString strippedName(const QString &fullFileName);
-
-    void on_action_7_triggered();
-
-    void printTable(QPrinter *printer, bool isPreview);
-
+    void pagePrint();
+    void closeApp();
+    void addPage();
+    void removePage();
     void readPribor();
-
     void writhtePribor();
-
     void settingsPage();
-
     void helpKonf();
-
     void aboutKonf();
 
+    void openRecentFile();
+    void on_tabWidget_currentChanged(int index);
+    void printPreview(QPrinter *printer);
+    void setCurrentFile(const QString &fileName);
+    void updateRecentFileActions();
+    QString strippedName(const QString &fullFileName);
+    void printTable(QPrinter *printer, bool isPreview);
     void loadFile(const QString &fileName);
-
-    void on_actionNew_triggered();
-
-    void on_actionLoad_triggered();
-
     void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
-
-    void closeApp();
-
 private:
     Ui::MainWindow *ui;
 
     void createActions();
     void createMenus();
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event); 
+    void onCheckBoxHeaderClick1();
+    void onCheckBoxHeaderClick2();
 
     QString curFile;
     QLabel* label;
@@ -119,21 +75,6 @@ private:
     QMenu *ingenerMenu;
     QMenu *recentFilesMenu;
     QMenu *helpMenu;
-    QAction *newAct;
-    QAction *openAct;
-    QAction *saveAct;
-    QAction *saveAsAct;
-    QAction *printSetupsAct;
-    QAction *printAct;
-    QAction *exitAct;
-    QAction *closeAct;
-    QAction *addAct;
-    QAction *removeAct;
-    QAction *readAct;
-    QAction *writhteAct;
-    QAction *settingsAct;
-    QAction *helpAct;
-    QAction *konfiguretorAct;
     bool isChanged = false;
     enum { MaxRecentFiles = 5 };
     QAction *recentFileActs[MaxRecentFiles];

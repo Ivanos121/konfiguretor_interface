@@ -152,11 +152,11 @@
    <addaction name="actionPage_Setup"/>
    <addaction name="actionprint"/>
    <addaction name="separator"/>
-   <addaction name="actionRead"/>
-   <addaction name="actionSave_2"/>
-   <addaction name="separator"/>
    <addaction name="actionPLUS"/>
    <addaction name="actionMINUS"/>
+   <addaction name="separator"/>
+   <addaction name="actionRead"/>
+   <addaction name="actionSave_2"/>
    <addaction name="separator"/>
   </widget>
   <action name="actionLoad">
@@ -206,6 +206,9 @@
    <property name="toolTip">
     <string>Сохранить файл конфигурации прибора</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionRead">
    <property name="icon">
@@ -215,6 +218,9 @@
    <property name="text">
     <string>Считать данные</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
   </action>
   <action name="actionSave_2">
    <property name="icon">
@@ -223,6 +229,9 @@
    </property>
    <property name="text">
     <string>Записать данные</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
    </property>
   </action>
   <action name="actionClose">
@@ -246,10 +255,13 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>PLUS</string>
+    <string>Добавить строку</string>
    </property>
    <property name="toolTip">
     <string>Добавить строку</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
   <action name="actionMINUS">
@@ -258,25 +270,13 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>MINUS</string>
+    <string>Удалить строку</string>
    </property>
    <property name="toolTip">
     <string>Удалить строку</string>
    </property>
-  </action>
-  <action name="action">
-   <property name="icon">
-    <iconset theme="document-new">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Создать новый файл конфигурации прибора</string>
-   </property>
-   <property name="toolTip">
-    <string>Создать новый файл конфигурации прибора</string>
-   </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionHelp">
@@ -298,57 +298,6 @@
    </property>
    <property name="text">
     <string>О программе</string>
-   </property>
-  </action>
-  <action name="action_4">
-   <property name="icon">
-    <iconset theme="configure">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Настройки</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+Return</string>
-   </property>
-  </action>
-  <action name="action_5">
-   <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Открыть файл конфигурации прибора</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
-  <action name="action_7">
-   <property name="icon">
-    <iconset theme="archive-remove">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Удалить строку</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R</string>
-   </property>
-  </action>
-  <action name="action_9">
-   <property name="icon">
-    <iconset theme="document-close">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Закрыть файл конфигурации прибора</string>
-   </property>
-   <property name="toolTip">
-    <string>Закрыть файл конфигурации прибора</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+W</string>
    </property>
   </action>
   <action name="actionExit">
@@ -374,6 +323,9 @@
    <property name="toolTip">
     <string>Печать файла конфигурации прибора</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionPage_Setup">
    <property name="icon">
@@ -386,58 +338,14 @@
    <property name="toolTip">
     <string>Просмотр предварительной печати</string>
    </property>
-  </action>
-  <action name="action_6">
-   <property name="icon">
-    <iconset theme="document-save">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Сохранить файл конфигурации прибора</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="action_8">
-   <property name="icon">
-    <iconset theme="document-print-preview">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Просмотр предварительной печати</string>
-   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+P</string>
    </property>
   </action>
-  <action name="action_10">
-   <property name="icon">
-    <iconset theme="document-print">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Печать конфигурации прибора</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
-  </action>
-  <action name="action_13">
-   <property name="icon">
-    <iconset theme="archive-insert">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Добавить строку</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+A</string>
-   </property>
-  </action>
   <action name="actionSaveAs">
    <property name="icon">
-    <iconset theme="document-save-as"/>
+    <iconset theme="document-save-as">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Сохранить файл конфигурации как</string>
@@ -451,7 +359,8 @@
   </action>
   <action name="actionNastr">
    <property name="icon">
-    <iconset theme="configure"/>
+    <iconset theme="configure">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>настройки</string>

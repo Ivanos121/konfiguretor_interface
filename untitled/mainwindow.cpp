@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 
 #include <QToolBar>
-//#include <QAbstractItemModel>
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QTextDocument>
@@ -107,40 +106,10 @@ void MainWindow::createMenus()
 
 void MainWindow::createActions()
 {
-    //newAct = new QAction(tr("&Создать новый файл конфигурации прибора"), this);
-    //newAct->setShortcuts(QKeySequence::New);
-    //newAct->setStatusTip(tr("Создать новый файл конфигурации прибора"));
-    //newAct->setIcon(QIcon(":/img/document-new"));
-    //newAct->setIconVisibleInMenu(true);
-    //connect(newAct, &QAction::triggered, this, &MainWindow::newFile);
     connect(ui->actionNew, &QAction::triggered, this, &MainWindow::newFile);
-
-//    openAct = new QAction(tr("&Открыть файл конфигурации прибора"), this);
-//    openAct->setShortcuts(QKeySequence::Open);
-//    openAct->setStatusTip(tr("Открыть файл конфигурации прибора"));
-//    openAct->setIcon(QIcon(":/img/document-open"));
-//    openAct->setIconVisibleInMenu(true);
     connect(ui->actionLoad, &QAction::triggered, this, &MainWindow::open);
-
-//    saveAct = new QAction(tr("&Сохранить файл конфигурации прибора"), this);
-//    saveAct->setShortcuts(QKeySequence::Save);
-//    saveAct->setStatusTip(tr("Сохранить файл конфигурации прибора"));
-//    saveAct->setIcon(QIcon(":/img/document-save"));
-//    saveAct->setIconVisibleInMenu(true);
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::Save);
-
-//    saveAsAct = new QAction(tr("&Сохранить файл конфигурации прибора как"), this);
-//    saveAsAct->setShortcuts(QKeySequence::SaveAs);
-//    saveAsAct->setStatusTip(tr("Сохранить файл конфигурации прибора как"));
-//    saveAsAct->setIcon(QIcon(":/img/document-save-as"));
-//    saveAsAct->setIconVisibleInMenu(true);
     connect(ui->actionSaveAs, &QAction::triggered, this, &MainWindow::SaveAs);
-
-//    closeAct = new QAction(tr("&Закрыть файл конфигурации прибора"), this);
-//    closeAct->setShortcuts(QKeySequence::Cancel);
-//    closeAct->setStatusTip(tr("Закрыть файл конфигурации прибора"));
-//    closeAct->setIcon(QIcon(":/img/document-close"));
-//    closeAct->setIconVisibleInMenu(true);
     connect(ui->actionClose, &QAction::triggered, this, &MainWindow::closeAllBase);
 
     for (int i = 0; i < MaxRecentFiles; ++i)
@@ -150,81 +119,28 @@ void MainWindow::createActions()
         connect(recentFileActs[i], &QAction::triggered, this, &MainWindow::openRecentFile);
     }
 
-//    printSetupsAct = new QAction(tr("&Просмотр предварительной печати"), this);
-//    printSetupsAct->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_P);
-//    printSetupsAct->setStatusTip(tr("Просмотр предварительной печати"));
-//    printSetupsAct->setIcon(QIcon(":/img/document-preview-archive"));
-//    printSetupsAct->setIconVisibleInMenu(true);
     connect(ui->actionPage_Setup, &QAction::triggered, this, &MainWindow::pageSetup);
-
-//    printAct = new QAction(tr("&Печать конфигурации прибора"), this);
-//    printAct->setShortcuts(QKeySequence::Print);
-//    printAct->setStatusTip(tr("Печать конфигурации прибора"));
-//    printAct->setIcon(QIcon(":/img/document-print"));
-//    printAct->setIconVisibleInMenu(true);
-    connect(ui->actionprint, &QAction::triggered, this, &MainWindow::on_actionprint_triggered);
-
-//    exitAct = new QAction(tr("&Выход"), this);
-//    exitAct->setShortcuts(QKeySequence::Quit);
-//    exitAct->setStatusTip(tr("Выход"));
-//    printAct->setIcon(QIcon(":/img/document-print"));
-//    printAct->setIconVisibleInMenu(true);
+    connect(ui->actionprint, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::closeApp);
-
-//    addAct = new QAction(tr("&Добавить строку"), this);
-//    addAct->setShortcut(Qt::SHIFT + Qt::Key_K);
-//    addAct->setStatusTip(tr("Добавить строку"));
-//    addAct->setIcon(QIcon(":/img/archive-insert"));
-//    addAct->setIconVisibleInMenu(true);
     connect(ui->actionPLUS, &QAction::triggered, this, &MainWindow::addPage);
-
-//    removeAct = new QAction(tr("&Удалить строку"), this);
-//    removeAct->setShortcut(Qt::SHIFT + Qt::Key_L);
-//    removeAct->setStatusTip(tr("Удалить строку"));
-//    removeAct->setIcon(QIcon(":/img/archive-remove"));
-//    removeAct->setIconVisibleInMenu(true);
     connect(ui->actionMINUS, &QAction::triggered, this, &MainWindow::removePage);
-
-//    readAct = new QAction(tr("&Прочитать данные прибора"), this);
-//    readAct->setShortcut(Qt::SHIFT + Qt::Key_R);
-//    readAct->setStatusTip(tr("Прочитать данные прибора"));
-//    readAct->setIcon(QIcon(":/img/document-import"));
-//    readAct->setIconVisibleInMenu(true);
     connect(ui->actionRead, &QAction::triggered, this, &MainWindow::readPribor);
-
-//    writhteAct = new QAction(tr("&Записать данные в прибор"), this);
-//    writhteAct->setShortcut(Qt::SHIFT + Qt::Key_W);
-//    writhteAct->setIcon(QIcon(":/img/document-export"));
-//    writhteAct->setIconVisibleInMenu(true);
-//    writhteAct->setStatusTip(tr("Записать данные в прибор"));
     connect(ui->actionSave_2, &QAction::triggered, this, &MainWindow::writhtePribor);
-
-//    settingsAct = new QAction(tr("&Настройки"), this);
-//    settingsAct->setShortcut(Qt::ALT + Qt::Key_F12);
-//    settingsAct->setStatusTip(tr("Настройки"));
-//    settingsAct->setIcon(QIcon(":/img/configure"));
-//    settingsAct->setIconVisibleInMenu(true);
     connect(ui->actionNastr, &QAction::triggered, this, &MainWindow::settingsPage);
-
-//    helpAct = new QAction(tr("&Руководство пользователя"), this);
-//    helpAct->setShortcuts(QKeySequence::HelpContents);
-//    helpAct->setStatusTip(tr("Руководство пользователя"));
-//    helpAct->setIcon(QIcon(":/img/system-help"));
-//    helpAct->setIconVisibleInMenu(true);
     connect(ui->actionNastr, &QAction::triggered, this, &MainWindow::helpKonf);
-
-//    konfiguretorAct = new QAction(tr("&О программе"), this);
-//    konfiguretorAct->setStatusTip(tr("О программе"));
-//    konfiguretorAct->setIcon(QIcon(":/img/IM_24_blue"));
-//    konfiguretorAct->setIconVisibleInMenu(true);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::aboutKonf);
 }
 
 void MainWindow::openRecentFile()
 {
-    QAction *action = qobject_cast<QAction *>(sender());
+   QAction *action = qobject_cast<QAction *>(sender());
    if (action)
    loadFile(action->data().toString());
+   int index = ui->tabWidget->currentIndex();
+   QString currentTabText = ui->tabWidget->tabText(index);
+   QFileInfo fi33(fileName);
+   QString base33 = fi33.baseName();
+   setWindowTitle(currentTabText + "@" + QString(base33) + QString(" - Konfiguretor"));
 }
 
 void MainWindow::setCurrentFile(const QString &fileName)
@@ -336,10 +252,11 @@ void MainWindow::loadFile(const QString &fileName)
      //настройки таблицы tableview
      ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked); //Редактирование начинается при двойном щелчке по элементу
      ui->tableView->setSelectionMode(QAbstractItemView :: SingleSelection); //нет выделения ячеек
-  //  ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+  //  ui->tableQCloseEvent*View->setSelectionBehavior(QAbstractItemView::SelectRows);
      ui->tableView->resizeColumnsToContents(); //Изменяет размер всех столбцов на основе подсказок размера делегата, используемого для визуализации каждого элемента в столбцах
 
-     QString currentTabText = ui->tabWidget->tabText(0);
+     int index = ui->tabWidget->currentIndex();
+     QString currentTabText = ui->tabWidget->tabText(index);
      QFileInfo fi2(fileName);
      QString base2 = fi2.baseName();
      setWindowTitle(currentTabText + "@" + QString(base2) + QString(" - Konfiguretor"));
@@ -475,25 +392,10 @@ void MainWindow::removePage()
     }
 }
 
-void MainWindow::on_action_11_triggered()
-{
-    close();
-}
-
-void MainWindow::on_actionprint_triggered()
+void MainWindow::pagePrint()
 {
     QPrinter printer;
     printTable(&printer, false);
-}
-
-void MainWindow::on_action_13_triggered()
-{
-    addPage();
-}
-
-void MainWindow::on_action_6_triggered()
-{
-
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index)
@@ -512,26 +414,6 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         QString currentTabText = ui->tabWidget->tabText(index);
         setWindowTitle(currentTabText + "@" + QString(base5) + QString(" - Konfiguretor"));
     }
-}
-
-void MainWindow::on_action_triggered()
-{
-    newFile();
-}
-
-void MainWindow::on_action_5_triggered()
-{
-
-}
-
-void MainWindow::on_action_9_triggered()
-{
-
-}
-
-void MainWindow::on_action_10_triggered()
-{
-
 }
 
 void MainWindow::pageSetup()
@@ -553,11 +435,6 @@ void MainWindow::pageSetup()
 void MainWindow::printPreview(QPrinter *printer)
 {
     printTable(printer, true);
-}
-
-void MainWindow::on_action_7_triggered()
-{
-    removePage();
 }
 
 void MainWindow::printTable(QPrinter *printer, bool isPreview)
@@ -647,16 +524,6 @@ void MainWindow::aboutKonf()
 
 }
 
-void MainWindow::on_actionNew_triggered()
-{
-
-}
-
-void MainWindow::on_actionLoad_triggered()
-{
-
-}
-
 void MainWindow::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
 {
     QString currentTabText = ui->tabWidget->tabText(0);
@@ -666,7 +533,7 @@ void MainWindow::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bo
 
 void MainWindow::closeApp()
 {
-
+    close();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)  // show prompt when user wants to close app
