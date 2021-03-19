@@ -53,6 +53,8 @@ private slots:
     void printTable(QPrinter *printer, bool isPreview);
     void loadFile(const QString &fileName);
     void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+    void on_actionSaveAs_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -61,11 +63,13 @@ private:
     void closeEvent(QCloseEvent *event); 
     void onCheckBoxHeaderClick1();
     void onCheckBoxHeaderClick2();
+    QStringList fieldNames(QString tableName);
 
     QString curFile;
     QLabel* label;
     QLabel* label2;
     QSqlDatabase sdb;
+    QSqlDatabase sdb2;
     QSqlTableModel *model;
     CheckBoxHeader* headerr;
     QAction *separatorAct;
@@ -78,6 +82,8 @@ private:
     bool isChanged = false;
     enum { MaxRecentFiles = 5 };
     QAction *recentFileActs[MaxRecentFiles];
+
+    QString fileName;
 
 };
 #endif // MAINWINDOW_H

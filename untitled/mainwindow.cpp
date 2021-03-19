@@ -13,9 +13,7 @@
 #include <QtGlobal>
 #include <QCloseEvent>
 #include <QMessageBox>
-
-QString fileName;
-int MAXRECENTFILE=5;
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -56,7 +54,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::open()
 {
-    QString fileName = QFileDialog::getOpenFileName(this);
+    fileName = QFileDialog::getOpenFileName(this);
     if (!fileName.isEmpty())
         loadFile(fileName);
 }
@@ -133,14 +131,17 @@ void MainWindow::createActions()
 
 void MainWindow::openRecentFile()
 {
-   QAction *action = qobject_cast<QAction *>(sender());
-   if (action)
-   loadFile(action->data().toString());
-   int index = ui->tabWidget->currentIndex();
-   QString currentTabText = ui->tabWidget->tabText(index);
-   QFileInfo fi33(fileName);
-   QString base33 = fi33.baseName();
-   setWindowTitle(currentTabText + "@" + QString(base33) + QString(" - Konfiguretor"));
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (action)
+    {
+        fileName = action->data().toString();
+        loadFile(fileName);
+        int index = ui->tabWidget->currentIndex();
+        QString currentTabText = ui->tabWidget->tabText(index);
+        QFileInfo fi(fileName);
+        QString base = fi.baseName();
+        setWindowTitle(currentTabText + "@" + QString(base) + QString(" - Konfiguretor"));
+    }
 }
 
 void MainWindow::setCurrentFile(const QString &fileName)
@@ -153,7 +154,7 @@ void MainWindow::setCurrentFile(const QString &fileName)
     files.removeAll(fileName);
     files.prepend(fileName);
     while (files.size() > MaxRecentFiles)
-        files.removeLast();
+    files.removeLast();
 
     settings.setValue("recentFileList", files);
 
@@ -227,9 +228,6 @@ void MainWindow::onCheckBoxHeaderClick2()
 
 void MainWindow::loadFile(const QString &fileName)
 {
-    //QString filter = "Файл конфигурации прибора (*.db);;All files (*.*)";
-    //fileName = QFileDialog::getOpenFileName(this, "Выбрать файл конфигурации прибора", QDir::homePath(), filter);
-
      setWindowTitle(fileName + QString(" - IM View"));
     //инициализация базы данных sqlite3
      sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
@@ -238,13 +236,7 @@ void MainWindow::loadFile(const QString &fileName)
      model->setTable("Net settings"); //Установка для таблицы базы данных, с которой работает модель, tableName
      model->setEditStrategy(QSqlTableModel::OnManualSubmit); //Все изменения будут кэшироваться в модели до тех пор, пока не будет вызван сигнал submitAll()
 
-     //подключение заголовка таблицы
-     //headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);  //создание заголовка tableview
-     //ui->tableView->setHorizontalHeader(headerr); //установка заголовка tableview и checkbox в первый столбец
-     //connect(headerr, &CheckBoxHeader::checkBoxClicked1, this, &MainWindow::onCheckBoxHeaderClick1); //подключение головного чекбокса к чекбоксам в первом столбце
-     //connect(headerr, &CheckBoxHeader::checkBoxClicked2, this, &MainWindow::onCheckBoxHeaderClick2); //подключение головного чекбокса к чекбоксам в первом столбце
-
-     //загрузка данных в таблицу tableview
+   //загрузка данных в таблицу tableview
      model->select(); //Заполняет модель данными из таблицы, которая была установлена ​​с помощью setTable(), используя указанный фильтр и условие сортировки
      ui->tableView->setModel(model); //Устанавливает модель для представления
      ui->tableView->hideColumn(1); //скрытие столбца id
@@ -255,18 +247,7 @@ void MainWindow::loadFile(const QString &fileName)
   //  ui->tableQCloseEvent*View->setSelectionBehavior(QAbstractItemView::SelectRows);
      ui->tableView->resizeColumnsToContents(); //Изменяет размер всех столбцов на основе подсказок размера делегата, используемого для визуализации каждого элемента в столбцах
 
-     int index = ui->tabWidget->currentIndex();
-     QString currentTabText = ui->tabWidget->tabText(index);
-     QFileInfo fi2(fileName);
-     QString base2 = fi2.baseName();
-     setWindowTitle(currentTabText + "@" + QString(base2) + QString(" - Konfiguretor"));
-
      setCurrentFile(fileName);
-     statusBar()->showMessage(tr("File loaded"), 2000);
-
-     QFileInfo fi4(fileName);
-     QString base4 = fi4.baseName();
-     ui->label_2->setText(base4);
      ui->actionSave->setEnabled(true);
      ui->actionSaveAs->setEnabled(true);
      ui->actionClose->setEnabled(true);
@@ -278,10 +259,14 @@ void MainWindow::loadFile(const QString &fileName)
      ui->actionMINUS->setEnabled(true);
      modifyMenu->setEnabled(true);
      priborMenu->setEnabled(true);
-     currentTabText = ui->tabWidget->tabText(0);
-     QFileInfo fi3(fileName);
-     QString base3 = fi3.baseName();
-     setWindowTitle(currentTabText + "@" + QString(base3) + QString(" - Konfiguretor"));
+
+     QFileInfo fi(fileName);
+     QString base = fi.baseName();
+     ui->label_2->setText(base);
+     int index = ui->tabWidget->currentIndex();
+     QString currentTabText = ui->tabWidget->tabText(index);
+     setWindowTitle(currentTabText + "@" + QString(base) + QString(" - Konfiguretor"));
+
      connect(ui->tableView->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataChanged(const QModelIndex&, const QModelIndex&)));
 }
 
@@ -304,7 +289,8 @@ void MainWindow::closeAllBase()
     ui->actionRead->setEnabled(false);
     ui->actionSave_2->setEnabled(false);
     ui->actionPLUS->setEnabled(false);
-    ui->actionMINUS->setEnabled(false);
+    ui->actionMINUS->setEnabled(false);sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
+    sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
     modifyMenu->setEnabled(false);
     priborMenu->setEnabled(false);
 }
@@ -355,7 +341,17 @@ void MainWindow::newFile()
      modifyMenu->setEnabled(true);
      priborMenu->setEnabled(true);
      setCurrentFile(fileName);
-     statusBar()->showMessage(tr("File loaded"), 2000);
+     if(sdb.isOpen())
+     {
+         QFileInfo fi(fileName);
+         QString base = fi.baseName();
+         ui->label_2->setText(base);
+         QString currentTabText = ui->tabWidget->tabText(index);
+         setWindowTitle(currentTabText + "@" + QString(base) + QString(" - Konfiguretor"));
+     }
+     connect(ui->tableView->model(), &QSqlTableModel::dataChanged, this, &MainWindow::onDataChanged);
+
+
 }
 
 void MainWindow::Save()
@@ -367,9 +363,11 @@ void MainWindow::Save()
     {
         model->database().rollback();
     }
-    QString currentTabText = ui->tabWidget->tabText(0);
-    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor"));
-
+    QFileInfo fi(fileName);
+    QString base = fi.baseName();
+    int index = ui->tabWidget->currentIndex();
+    QString currentTabText = ui->tabWidget->tabText(index);
+    setWindowTitle(currentTabText + "@" + base + QString(" - Konfiguretor"));
     isChanged = false;
 }
 
@@ -407,10 +405,6 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         QFileInfo fi5(fileName);
         QString base5 = fi5.baseName();
         ui->label_2->setText(base5);
-   //     ui->label_2->setStyleSheet(" QLabel {font-family: 'Open Sans', sans-serif;"
-   //                                " font: 12px;"
-   //                                " color: black;"
-   //                                " font-weight: 600;}");
         QString currentTabText = ui->tabWidget->tabText(index);
         setWindowTitle(currentTabText + "@" + QString(base5) + QString(" - Konfiguretor"));
     }
@@ -526,8 +520,11 @@ void MainWindow::aboutKonf()
 
 void MainWindow::onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
 {
-    QString currentTabText = ui->tabWidget->tabText(0);
-    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor") + QString("*"));
+    QFileInfo fi(fileName);
+    QString base = fi.baseName();
+    int index = ui->tabWidget->currentIndex();
+    QString currentTabText = ui->tabWidget->tabText(index);
+    setWindowTitle(currentTabText + "@" + base + QString(" - Konfiguretor") + QString("*"));
     isChanged = true;
 }
 
@@ -557,4 +554,27 @@ void MainWindow::closeEvent(QCloseEvent *event)  // show prompt when user wants 
     {
         event->accept();
     }
+}
+
+void MainWindow::on_actionSaveAs_triggered()
+{
+    QString filter = "Файл конфигурации прибора (*.db);;Все файлы (*.*)";
+    fileName = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", QDir::homePath(), filter);
+
+}
+
+QStringList MainWindow::fieldNames(QString tableName)
+{
+    QString query ("select * from ");
+    query = query.append(tableName);
+
+    QSqlQuery sqlQuery(query);
+    QSqlRecord record = sqlQuery.record();  //get the field information for the current query.
+
+   QStringList fieldNames;
+    for ( int x = 0; x < record.count(); ++x)
+   {
+       fieldNames.append( record.fieldName(x) );
+   }
+   return fieldNames;
 }
