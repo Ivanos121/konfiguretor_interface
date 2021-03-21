@@ -63,8 +63,9 @@ private:
     void closeEvent(QCloseEvent *event); 
     void onCheckBoxHeaderClick1();
     void onCheckBoxHeaderClick2();
-    QStringList fieldNames(QString tableName);
-
+    void closeAllBase_Yes();
+    void closeAllBase_No();
+    void closeAllBase_Otmena();
     QString curFile;
     QLabel* label;
     QLabel* label2;

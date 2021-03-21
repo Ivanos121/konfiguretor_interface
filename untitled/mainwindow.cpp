@@ -272,10 +272,46 @@ void MainWindow::loadFile(const QString &fileName)
 
 void MainWindow::closeAllBase()
 {
-    sdb.close();
-    QSqlDatabase::removeDatabase(fileName);
-    model->clear();
+    if(isChanged)
+    {
+        switch (QMessageBox::question(this, "Сохранить документ?", "Сохранить изменения перед закрытием  файла?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
+        {
+        case QMessageBox::Yes:
+            Save();
+            sdb.close();
+            QSqlDatabase::removeDatabase(fileName);
+            model->clear();
+            closeAllBase_Yes();
+            break;
+        case QMessageBox::Cancel:
+            closeAllBase_Otmena();
+            qDebug() << "bla bla bla";
+            break;
+        case QMessageBox::No:
+            sdb.close();
+            QSqlDatabase::removeDatabase(fileName);
+            model->clear();
+            isChanged=false;
+            closeAllBase_No();
+            break;
+        default:
+          break;
+        }
+    }
+    else
+    {
+        sdb.close();
+        QSqlDatabase::removeDatabase(fileName);
+        model->clear();
+        ui->label_2->setText("Загрузите файл конфигурации прибора");
+        ui->tabWidget->setCurrentIndex(0);
+        QString currentTabText = ui->tabWidget->tabText(0);
+        setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor"));
+    }
+}
 
+void MainWindow::closeAllBase_Yes()
+{
     ui->label_2->setText("Загрузите файл конфигурации прибора");
     ui->tabWidget->setCurrentIndex(0);
     QString currentTabText = ui->tabWidget->tabText(0);
@@ -289,10 +325,38 @@ void MainWindow::closeAllBase()
     ui->actionRead->setEnabled(false);
     ui->actionSave_2->setEnabled(false);
     ui->actionPLUS->setEnabled(false);
-    ui->actionMINUS->setEnabled(false);sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
+    ui->actionMINUS->setEnabled(false);
+    sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
     sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
     modifyMenu->setEnabled(false);
     priborMenu->setEnabled(false);
+}
+
+void MainWindow::closeAllBase_No()
+{
+    ui->label_2->setText("Загрузите файл конфигурации прибора");
+    ui->tabWidget->setCurrentIndex(0);
+    QString currentTabText = ui->tabWidget->tabText(0);
+    setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor"));
+    ui->actionSave->setEnabled(false);
+    ui->actionSaveAs->setEnabled(false);
+    ui->actionClose->setEnabled(false);
+    ui->actionprint->setEnabled(false);
+    ui->actionPage_Setup->setEnabled(false);
+    ui->actionRead->setEnabled(false);
+    ui->actionSave_2->setEnabled(false);
+    ui->actionPLUS->setEnabled(false);
+    ui->actionMINUS->setEnabled(false);
+    sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
+    sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
+    modifyMenu->setEnabled(false);
+    priborMenu->setEnabled(false);
+}
+
+void MainWindow::closeAllBase_Otmena()
+{
+    return;
+
 }
 
 void MainWindow::newFile()
@@ -314,12 +378,6 @@ void MainWindow::newFile()
      model = new Model; //создание модели QSqlTableModel
      model->setTable("Net settings"); //Установка для таблицы базы данных, с которой работает модель, tableName
      model->setEditStrategy(QSqlTableModel::OnManualSubmit); //Все изменения будут кэшироваться в модели до тех пор, пока не будет вызван сигнал submitAll()
-
-     //подключение заголовка таблицы
-//     headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);  //создание заголовка tableview
-//     ui->tableView->setHorizontalHeader(headerr); //установка заголовка tableview и checkbox в первый столбец
-//     //connect(headerr, &CheckBoxHeader::checkBoxClicked1, this, &MainWindow::onCheckBoxHeaderClick1); //подключение головного чекбокса к чекбоксам в первом столбце
-//     //connect(headerr, &CheckBoxHeader::checkBoxClicked2, this, &MainWindow::onCheckBoxHeaderClick2); //подключение головного чекбокса к чекбоксам в первом столбце
 
      //загрузка данных в таблицу tableview
      model->select(); //Заполняет модель данными из таблицы, которая была установлена ​​с помощью setTable(), используя указанный фильтр и условие сортировки
@@ -537,7 +595,7 @@ void MainWindow::closeEvent(QCloseEvent *event)  // show prompt when user wants 
 {
     if(isChanged)
     {
-        switch (QMessageBox::question(this, "Close Confirmation", "Сохранить?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
+        switch (QMessageBox::question(this, "Сохранить документ?", "Сохранить?", QMessageBox::Yes | QMessageBox::No |  QMessageBox::Cancel))
         {
         case QMessageBox::Yes:
             Save();
@@ -548,6 +606,8 @@ void MainWindow::closeEvent(QCloseEvent *event)  // show prompt when user wants 
             break;
         case QMessageBox::No:
             event->accept();
+        default:
+          break;
         }
     }
     else
@@ -563,18 +623,4 @@ void MainWindow::on_actionSaveAs_triggered()
 
 }
 
-QStringList MainWindow::fieldNames(QString tableName)
-{
-    QString query ("select * from ");
-    query = query.append(tableName);
 
-    QSqlQuery sqlQuery(query);
-    QSqlRecord record = sqlQuery.record();  //get the field information for the current query.
-
-   QStringList fieldNames;
-    for ( int x = 0; x < record.count(); ++x)
-   {
-       fieldNames.append( record.fieldName(x) );
-   }
-   return fieldNames;
-}
